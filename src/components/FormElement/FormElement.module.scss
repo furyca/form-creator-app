@@ -1,0 +1,55 @@
+.formElement {
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 2px dashed #6c6c6c;
+  border-radius: 4px;
+  background-color: #c9c9c947;
+  user-select: none;
+  cursor: pointer;
+
+  .head {
+    visibility: hidden;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    .actions {
+      margin-bottom: 1rem;
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    
+        &:hover {
+          background-color: #44444430;
+        }
+      }
+    
+      .handle {
+        display: inline;
+        cursor: move;
+      }
+    
+      button,
+      .handle {
+        height: 24px;
+        width: 24px;
+      }
+    }
+  }
+  
+  textarea,
+  input,
+  select {
+    height: auto;
+    width: 100%;
+    resize: none;
+    pointer-events: none;
+  }
+
+  &:hover {
+    .head {
+      visibility: visible;
+    }
+  }
+}

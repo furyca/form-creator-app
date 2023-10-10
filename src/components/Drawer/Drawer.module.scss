@@ -1,0 +1,57 @@
+.drawer {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -100%;
+  width: 40%;
+  height: 100vh;
+  padding: 1rem;
+  background-color: #c2c2c2;
+  border: 1px solid gray;
+
+  .editor {
+    padding: 0 1rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+  }
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .actions {
+    text-align: end;
+    button {
+      cursor: pointer;
+    }
+  }
+
+  .toolbar {
+    margin-bottom: 0;
+  }
+
+  .wrapper {
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid black;
+  }
+
+  .options {
+    margin-top: 1rem;
+
+    button {
+      cursor: pointer;
+    }
+
+    .addOptButton {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.drawer.edit {
+  left: 0;
+}

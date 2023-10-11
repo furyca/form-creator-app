@@ -12,13 +12,14 @@
     visibility: hidden;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 98%;
     .actions {
       margin-bottom: 1rem;
       button {
         background-color: transparent;
         border: none;
         cursor: pointer;
+        margin-right: 1rem;
     
         &:hover {
           background-color: #44444430;

@@ -9,6 +9,8 @@ import { useState } from "react";
 import { clearEditorContent } from "draftjs-utils";
 import { ContentState, EditorState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Drawer = () => {
   const context = useContext(Context);
@@ -76,69 +78,82 @@ const Drawer = () => {
   };
 
   return (
-    <div className={`${style.drawer} ${context.drawer && style.edit}`}>
-      <div className={style.actions}>
-        <button onClick={closeDrawer}>X</button>
-      </div>
-      <h2>{activeItem && activeItem.type}</h2>
-      <h3>Set Label</h3>
-      <Editor
-        editorState={context.editorState}
-        onEditorStateChange={context.setEditorState}
-        editorClassName={style.editor}
-        wrapperClassName={style.wrapper}
-        toolbarClassName={style.toolbar}
-      />
-      <input
-        type="checkbox"
-        id="isRequired"
-        checked={activeItem.required || false}
-        onChange={(e) =>
-          setActiveItem({ ...activeItem, required: e.target.checked })
-        }
-      />
-      <label htmlFor="isRequired">Required?</label>
-      {context.drawer && activeItem.type === "Dropdown" && (
-        <div className={style.options}>
-          <table className={style.optionWrapper}>
-            <thead>
-              <tr>
-                <th>Options</th>
-                <th>Value</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            {activeItem.options.map((option) => {
-              return (
-                <tbody key={nanoid()}>
-                  <tr>
-                    <td>
-                      <input
-                        type="text"
-                        defaultValue={option.name}
-                        onChange={(e) => (option.name = e.target.value)}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="text"
-                        defaultValue={option.value}
-                        onChange={(e) => (option.value = e.target.value)}
-                      />
-                    </td>
-                    <td>
-                      <button onClick={() => deleteOption(option.id)}>
-                        Remove Option
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              );
-            })}
-          </table>
-          <button onClick={addOption} className={style.addOptButton}>Add Option</button>
+    <div className={`${style.drawerWrapper} ${context.drawer && style.edit}`}>
+      <div className={`${style.drawer} ${context.drawer && style.edit}`}>
+        <div className={style.actions}>
+          <button onClick={closeDrawer}>X</button>
         </div>
-      )}
+        <h2>{activeItem && activeItem.type}</h2>
+        <h3>Set Label</h3>
+        <Editor
+          editorState={context.editorState}
+          onEditorStateChange={context.setEditorState}
+          editorClassName={style.editor}
+          wrapperClassName={style.wrapper}
+          toolbarClassName={style.toolbar}
+        />
+        <div className={style.checkboxContainer}>
+          <input
+            type="checkbox"
+            id="isRequired"
+            checked={activeItem.required || false}
+            onChange={(e) => setActiveItem({ ...activeItem, required: e.target.checked })}
+            className={style.checkbox}
+          />
+          <label htmlFor="isRequired">Required?</label>
+        </div>
+        
+        {context.drawer && activeItem.type === "Dropdown" && (
+          <div className={style.options}>
+            <button onClick={addOption} className={style.addOptButton}>
+              <FontAwesomeIcon icon={faPlus} style={{ color: "#defecd" }} />
+            </button>
+            <label>Add Option</label>
+            <table >
+              <thead>
+                <tr>
+                  <th>Options</th>
+                  <th>Value</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              {activeItem.options.map((option) => {
+                return (
+                  <tbody key={nanoid()}>
+                    <tr>
+                      <td>
+                        <input
+                          type="text"
+                          defaultValue={option.name}
+                          onChange={(e) => (option.name = e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          defaultValue={option.value}
+                          onChange={(e) => (option.value = e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => deleteOption(option.id)}
+                          className={style.delOptButton}
+                        >
+                          <FontAwesomeIcon
+                            icon={faMinus}
+                            style={{ color: "whitesmoke" }}
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
+            </table>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

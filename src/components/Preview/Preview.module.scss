@@ -14,6 +14,17 @@
       text-align: end;
       button {
         cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        background-color: #fff;
+        padding: .5rem 1rem;
+        transition: all ease .15s;
+
+        &:hover {
+          background-color: #d7d7d7;
+          box-shadow: 0 0 5px gray;
+          scale: 1.05;
+        }
       }
     }
     width: 50%;

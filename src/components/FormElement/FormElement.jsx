@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import style from "./FormElement.module.scss";
 import { Context } from "../../Context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGripVertical, faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const FormElement = ({ item, provided }) => {
   const context = useContext(Context);
@@ -24,13 +26,15 @@ const FormElement = ({ item, provided }) => {
       ref={provided.innerRef}
       {...provided.draggableProps}
     >
+      
       <div className={style.head}>
         <span>{item.type}</span>
         <div className={style.actions}>
-          <button onClick={openEditMode}>E</button>
-          <button onClick={handleDelete}>D</button>
+        
+          <button onClick={openEditMode}><FontAwesomeIcon icon={faPenToSquare} /></button>
+          <button onClick={handleDelete}><FontAwesomeIcon icon={faTrash} /></button>
           <div className={style.handle} {...provided.dragHandleProps}>
-            M
+          <FontAwesomeIcon icon={faGripVertical} />
           </div>
         </div>
       </div>

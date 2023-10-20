@@ -12,5 +12,11 @@ header {
     border-radius: 4px;
     box-shadow: 0 0 5px gray;
     padding: .5rem 1rem;
+    transition: all ease 0.25s;
+
+    &:hover {
+      background-color: #aeaeae;
+      box-shadow: 0 0 10px gray;
+    }
   }
 }
